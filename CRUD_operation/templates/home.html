@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+{% block content %} 
+
+<div class="card shadow p-4">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Student List</h3>
+        <a href="/add/" class="btn btn-success">+ Add Student</a>
+    </div>
+
+    <table class="table table-bordered table-hover text-center align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Image</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.std_name }}</td>
+                <td>{{ i.std_roll }}</td>
+                <td>
+                    <img src="{{ i.std_image.url }}" width="70" height="70" class="rounded-circle">
+                </td>
+                <td>{{ i.std_email }}</td>
+                <td>{{ i.std_city }}</td>
+                <td>
+                    <a href="/edit/{{ i.id }}/" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/delete/{{ i.id }}/" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

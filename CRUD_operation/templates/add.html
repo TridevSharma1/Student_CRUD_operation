@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4 col-md-6 mx-auto">
+
+    <h3 class="text-center mb-4 text-success">Add Student</h3>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter Name">
+        </div>
+
+        <div class="mb-3">
+            <label>Roll</label>
+            <input type="number" name="roll" class="form-control" placeholder="Enter Roll Number">
+        </div>
+
+        <div class="mb-3">
+            <label>Image</label>
+            <input type="file" name="image" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" placeholder="Enter Email">
+        </div>
+
+        <div class="mb-3">
+            <label>City</label>
+            <input type="text" name="city" class="form-control" placeholder="Enter City">
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Save Student</button>
+
+    </form>
+
+</div>
+
+{% endblock %}

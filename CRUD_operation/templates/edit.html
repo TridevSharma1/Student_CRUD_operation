@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4 col-md-6 mx-auto">
+
+    <h3 class="text-center mb-4 text-warning">Update Student</h3>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="name" value="{{ data.std_name }}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Roll</label>
+            <input type="number" name="roll" value="{{ data.std_roll }}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Old Image</label><br>
+            <img src="{{ data.std_image.url }}" width="100" class="mb-2 rounded">
+            <input type="file" name="image" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ data.std_email }}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>City</label>
+            <input type="text" name="city" value="{{ data.std_city }}" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">Update Student</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
