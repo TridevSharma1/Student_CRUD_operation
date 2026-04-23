@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Student
 
 # Show All Data
-def home(request):
+def student_list(request):
     data = Student.objects.all()
     return render(request, 'home.html', {'data': data})
 
@@ -16,30 +16,41 @@ def add_student(request):
             std_email=request.POST['email'],
             std_city=request.POST['city']
         )
-        return redirect('/')
+        return redirect('student_list')
     return render(request, 'add.html')
 
+##In This Functionn We have to firstly check the method is POST or not, 
+# if it is POST then we will create a new student object with the data 
+#
+#             std_name=request.POST['name'],
+#             std_roll=request.POST['roll'],
+#             std_image=request.FILES['image'],
+#             std_email=request.POST['email'],
+#             std_city=request.POST['city']
+#std_name is the column name in the Student model and request.POST['name'] 
+# is the name attribute of add student form simillarly image email and city
 
-# Delete Data
-def delete_student(request, id):
-    data = Student.objects.get(id=id)
-    data.delete()
-    return redirect('/')
 
-# Update Data
-def edit_student(request, id):
-    data = Student.objects.get(id=id)
+# # Delete Data
+# def delete_student(request, id):
+#     data = Student.objects.get(id=id)
+#     data.delete()
+#     return redirect('student_list')
 
-    if request.method == 'POST':
-        data.std_name = request.POST['name']
-        data.std_roll = request.POST['roll']
-        data.std_email = request.POST['email']
-        data.std_city = request.POST['city']
+# # Update Data
+# def edit_student(request, id):
+#     data = Student.objects.get(id=id)
 
-        if request.FILES.get('image'):
-            data.std_image = request.FILES['image']
+#     if request.method == 'POST':
+#         data.std_name = request.POST['name']
+#         data.std_roll = request.POST['roll']
+#         data.std_email = request.POST['email']
+#         data.std_city = request.POST['city']
 
-        data.save()
-        return redirect('/')
+#         if request.FILES.get('image'):
+#             data.std_image = request.FILES['image']
 
-    return render(request, 'edit.html', {'data': data})
+#         data.save()
+#         return redirect('/')
+
+#     return render(request, 'edit.html', {'data': data})
