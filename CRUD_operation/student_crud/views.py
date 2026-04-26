@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Student
+from .models import *
 
 # Show All Data
 def student_list(request):
@@ -19,7 +19,7 @@ def add_student(request):
         return redirect('student_list')
     return render(request, 'add.html')
 
-##In This Functionn We have to firstly check the method is POST or not, 
+# In This Functionn We have to firstly check the method is POST or not, 
 # if it is POST then we will create a new student object with the data 
 #
 #             std_name=request.POST['name'],
@@ -27,30 +27,30 @@ def add_student(request):
 #             std_image=request.FILES['image'],
 #             std_email=request.POST['email'],
 #             std_city=request.POST['city']
-#std_name is the column name in the Student model and request.POST['name'] 
-# is the name attribute of add student form simillarly image email and city
+# std_name is the column name in the Student model. 
+# request.POST['name'] is the name attribute of add student form simillarly image email and city
 
 
 # # Delete Data
-# def delete_student(request, id):
-#     data = Student.objects.get(id=id)
-#     data.delete()
-#     return redirect('student_list')
+def delete_student(request, id):
+    data = Student.objects.get(id=id)
+    data.delete()
+    return redirect('student_list')
 
 # # Update Data
-# def edit_student(request, id):
-#     data = Student.objects.get(id=id)
+def edit_student(request, id):
+    data = Student.objects.get(id=id)
 
-#     if request.method == 'POST':
-#         data.std_name = request.POST['name']
-#         data.std_roll = request.POST['roll']
-#         data.std_email = request.POST['email']
-#         data.std_city = request.POST['city']
+    if request.method == 'POST':
+        data.std_name = request.POST['name']
+        data.std_roll = request.POST['roll']
+        data.std_email = request.POST['email']
+        data.std_city = request.POST['city']
 
-#         if request.FILES.get('image'):
-#             data.std_image = request.FILES['image']
+        if request.FILES.get('image'):
+            data.std_image = request.FILES['image']
 
-#         data.save()
-#         return redirect('/')
+        data.save()
+        return redirect('student_list')
 
-#     return render(request, 'edit.html', {'data': data})
+    return render(request, 'edit.html', {'data': data})
